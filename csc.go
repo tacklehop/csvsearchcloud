@@ -25,6 +25,10 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 
 func main() {
 	uri = "https://raw.githubusercontent.com/tacklehop/csvsearchcloud/main/sample.csv"
+	cscMain(uri)
+}
+
+func cscMain(uri string) {
 	t := &Template{
 		templates: template.Must(template.ParseGlob("*.html")),
 	}
@@ -50,6 +54,12 @@ func saveHandler(c echo.Context) error {
 	fmt.Println("In : saveHandler()")
 	defer fmt.Println("Out: saveHandler()")
 	key := c.FormValue("body")
+	err := ioutil.WriteFile("key.txt", []byte(key), 0600)
+	if err != nil {
+		fmt.Println("File Not Written:", err)
+		return err
+	}
+
 	result, err := searchCsvFromHttp(uri, key)
 	if err != nil {
 		fmt.Println("CSV search error:", err)
