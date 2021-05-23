@@ -1,0 +1,10 @@
+{{define "search"}}
+<!DOCTYPE html>
+<html>
+	<h1>Search</h1>
+	<form action="/save" method="POST">
+		<div><textarea name="body" rows="1" cols="80">{{.}}</textarea></div>
+		<div><input type="submit" value="Search"></div>
+	</form>
+</html>
+{{end}}
