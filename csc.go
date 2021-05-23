@@ -24,7 +24,7 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 
 func main() {
-	uri = "https://raw.githubusercontent.com/tacklehop/csvsearch/main/sample.csv"
+	uri = "https://raw.githubusercontent.com/tacklehop/csvsearchcloud/main/sample.csv"
 	t := &Template{
 		templates: template.Must(template.ParseGlob("*.html")),
 	}
